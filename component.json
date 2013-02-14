@@ -2,8 +2,11 @@
   "name": "render",
   "repo": "genjs/render",
   "description": "render",
-  "version": "0.1.0",
-  "dependencies": {},
+  "version": "0.1.1",
+  "dependencies": {
+    "sel": "*",
+    "sel-style": "*"
+  },
   "scripts": ["index.js"],
   "keywords": ["render"],
   "license": "MIT"
