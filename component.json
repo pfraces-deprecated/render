@@ -2,10 +2,10 @@
   "name": "render",
   "repo": "genjs/render",
   "description": "render",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "dependencies": {
-    "sel": "*",
-    "sel-style": "*"
+    "bojs/sel": "*",
+    "bojs/sel-style": "*"
   },
   "scripts": ["index.js"],
   "keywords": ["render"],
