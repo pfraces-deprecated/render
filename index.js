@@ -5,10 +5,12 @@ module.exports = function (config) {
 };
 
 var Render = function (config) {
-  this.board = sel('#' + config.id).
+  sel('#' + config.id).
     size({
       width: (config.width * config.cell).toString() + 'px',
       height: (config.height * config.cell).toString() + 'px'
     }).
     color({ bg: config.bg });
+
+  setInterval(config.frame, 1000 / config.fps);
 };
