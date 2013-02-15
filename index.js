@@ -1,8 +1,6 @@
 var sel = require('sel').plugin(require('sel-style'));
 
-module.exports = render;
-
-var render = function (config) {
+var render = module.exports = function (config) {
   return new Render(config);
 };
 
