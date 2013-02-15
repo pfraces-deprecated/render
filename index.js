@@ -6,7 +6,9 @@ var render = module.exports = function (config) {
 
 var Render = function (config) {
   this.board = sel(config.id).
-    size((config.width * config.cell).toString() + 'px',
-         (config.height * config.cell).toString() + 'px').
+    size({
+      width: (config.width * config.cell).toString() + 'px',
+      height: (config.height * config.cell).toString() + 'px'
+    }).
     color({ bg: config.bg });
 };
