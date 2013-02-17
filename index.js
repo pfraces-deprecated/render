@@ -19,7 +19,7 @@ var Render = function (config, actors) {
     }).
     color({ bg: config.bg });
 
-  var frame = function (actors) {
+  var frame = function () {
     actors.forEach(function (actor) {
       actor.members.forEach(function (member) {
         member.el.pos({
@@ -30,7 +30,7 @@ var Render = function (config, actors) {
     });
   };
 
-  setInterval(frame(actors), 1000 / config.fps);
+  setInterval(frame, 1000 / config.fps);
 };
 
 Render.prototype.tile = (function () {
