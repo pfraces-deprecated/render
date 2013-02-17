@@ -9,10 +9,13 @@ module.exports = function (config, actors) {
 };
 
 var Render = function (config, actors) {
+  var self = this;
+  this.cell = config.cell;
+
   this.board = sel('#' + config.id).
     size({
-      width: (config.width * config.cell).toString() + 'px',
-      height: (config.height * config.cell).toString() + 'px'
+      width: (config.width * this.cell).toString() + 'px',
+      height: (config.height * this.cell).toString() + 'px'
     }).
     color({ bg: config.bg });
 
@@ -20,8 +23,8 @@ var Render = function (config, actors) {
     actors.forEach(function (actor) {
       actor.members.forEach(function (member) {
         member.el.pos({
-          x: ((actor.x + member.x) * config.cell).toString() + 'px',
-          y: ((actor.y + member.y) * config.cell).toString() + 'px'
+          x: ((actor.x + member.x) * self.cell).toString() + 'px',
+          y: ((actor.y + member.y) * self.cell).toString() + 'px'
         })
       });
     });
@@ -36,6 +39,8 @@ Render.prototype.tile = (function () {
 
   return function (color) {
     return sel.div('tile' + id).
-      move({to: self.board});
+      move({to: self.board}).
+      size({ width: self.cell, height: self.cell }).
+      color({ bg: color });
   };
 })();
