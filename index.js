@@ -35,12 +35,21 @@ var Render = function (config, actors) {
 
 Render.prototype.tile = (function () {
   var self = this,
-      id = 0;
+      _id = 0;
+
+  var id = function () {
+    var current = _id;
+    _id++;
+    return current;
+  };
 
   return function (color) {
-    return sel.div('tile' + id).
+    return sel.div('tile' + id()).
       move({to: self.board}).
-      size({ width: self.cell, height: self.cell }).
+      size({ 
+        width: self.cell.toString() + 'px',
+        height: self.cell.toString() + 'px'
+      }).
       color({ bg: color });
   };
 })();
