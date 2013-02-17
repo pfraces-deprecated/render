@@ -4,8 +4,8 @@ sel.plugin(
   require('sel-arrange')
 );
 
-module.exports = function (config) {
-  return new Render(config);
+module.exports = function (config, actors) {
+  return new Render(config, actors);
 };
 
 var Render = function (config, actors) {
