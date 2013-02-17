@@ -44,7 +44,7 @@ Render.prototype.tile = (function () {
 
   return function (color) {
     return sel.div('tile' + id()).
-      move({to: this.board}).
+      move({to: this.board, relative: true}).
       size({ 
         width: this.cell.toString() + 'px',
         height: this.cell.toString() + 'px'
