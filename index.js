@@ -34,8 +34,7 @@ var Render = function (config, actors) {
 };
 
 Render.prototype.tile = (function () {
-  var self = this,
-      _id = 0;
+  var _id = 0;
 
   var id = function () {
     var current = _id;
@@ -45,10 +44,10 @@ Render.prototype.tile = (function () {
 
   return function (color) {
     return sel.div('tile' + id()).
-      move({to: self.board}).
+      move({to: this.board}).
       size({ 
-        width: self.cell.toString() + 'px',
-        height: self.cell.toString() + 'px'
+        width: this.cell.toString() + 'px',
+        height: this.cell.toString() + 'px'
       }).
       color({ bg: color });
   };
