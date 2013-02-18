@@ -2,9 +2,8 @@
   "name": "render",
   "repo": "genjs/render",
   "description": "render",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "dependencies": {
-    "corejs/type": "*",
     "bojs/sel": "*",
     "bojs/sel-style": "*",
     "bojs/sel-arrange": "*"
