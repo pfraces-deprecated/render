@@ -36,12 +36,24 @@ Render.prototype.tile = (function () {
   };
 
   return function () {
-    return sel.div('tile' + id()).
+    var cell = this.config.cell,
+        tile = sel.div('tile' + id());
+
+    tile.
       move({to: this.board, relative: true}).
       size({ 
-        width: this.config.cell.toString() + 'px',
-        height: this.config.cell.toString() + 'px'
+        width: cell.toString() + 'px',
+        height: cell.toString() + 'px'
       }).
       color({ bg: this.config.fg }); /* tile bg = config fg */
+
+    return {
+      move: function (x, y) {
+        tile.pos({
+          x: (x * cell).toString() + 'px',
+          y: (y * cell).toString() + 'px',
+        });
+      }
+    };
   };
 })();
