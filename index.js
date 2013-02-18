@@ -10,7 +10,6 @@ module.exports = function (config, actors) {
 };
 
 var Render = function (config) {
-  var self = this;
   this.config = {
     cell: config.cell,
     fg: config.fg
