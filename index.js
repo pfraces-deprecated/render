@@ -9,33 +9,21 @@ module.exports = function (config, actors) {
   return new Render(config, actors);
 };
 
-var Render = function (config, actors) {
+var Render = function (config) {
   var self = this;
-  this.cell = config.cell;
+  this.config = {
+    cell: config.cell,
+    fg: config.fg
+  };
 
   this.board = sel('#' + config.id).
     size({
-      width: (config.width * this.cell).toString() + 'px',
-      height: (config.height * this.cell).toString() + 'px'
+      width: (config.width * config.cell).toString() + 'px',
+      height: (config.height * config.cell).toString() + 'px'
     }).
     color({ bg: config.bg });
 
-  var frame = function () {
-    actors.forEach(function (actor) {
-      actor.act();
-    });
-
-    actors.forEach(function (actor) {
-      actor.members.forEach(function (member) {
-        member.el.pos({
-          x: ((actor.x + member.x) * self.cell).toString() + 'px',
-          y: ((actor.y + member.y) * self.cell).toString() + 'px'
-        })
-      });
-    });
-  };
-
-  setInterval(frame, 1000 / config.fps);
+  setInterval(config.frame, 1000 / config.fps);
 };
 
 Render.prototype.tile = (function () {
@@ -47,13 +35,13 @@ Render.prototype.tile = (function () {
     return current;
   };
 
-  return function (color) {
+  return function () {
     return sel.div('tile' + id()).
       move({to: this.board, relative: true}).
       size({ 
-        width: this.cell.toString() + 'px',
-        height: this.cell.toString() + 'px'
+        width: this.config.cell.toString() + 'px',
+        height: this.config.cell.toString() + 'px'
       }).
-      color({ bg: color });
+      color({ bg: this.config.fg }); /* tile bg = config fg */
   };
 })();
