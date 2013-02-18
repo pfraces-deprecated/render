@@ -1,4 +1,5 @@
 var sel = require('sel');
+
 sel.plugin(
   require('sel-style'),
   require('sel-arrange')
@@ -20,6 +21,10 @@ var Render = function (config, actors) {
     color({ bg: config.bg });
 
   var frame = function () {
+    actors.forEach(function (actor) {
+      actor.act();
+    });
+
     actors.forEach(function (actor) {
       actor.members.forEach(function (member) {
         member.el.pos({
