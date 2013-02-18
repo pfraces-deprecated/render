@@ -1,4 +1,4 @@
-var id = require('uid')(),
+var uid = require('uid'),
     sel = require('sel');
 
 sel.plugin(
@@ -28,7 +28,7 @@ var Render = function (config) {
 
 Render.prototype.tile = function () {
   var cell = this.config.cell,
-      tile = sel.div('tile' + id());
+      tile = sel.div(id());
 
   tile.
     move({to: this.board, relative: true}).
@@ -47,3 +47,7 @@ Render.prototype.tile = function () {
     }
   };
 };
+
+var id = uid(function (id) {
+  return 'tile' + id;
+});
