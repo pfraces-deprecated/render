@@ -1,4 +1,5 @@
-var sel = require('sel');
+var id = require('uid')(),
+    sel = require('sel');
 
 sel.plugin(
   require('sel-style'),
@@ -25,34 +26,24 @@ var Render = function (config) {
   setInterval(config.frame, 1000 / config.fps);
 };
 
-Render.prototype.tile = (function () {
-  var _id = 0;
+Render.prototype.tile = function () {
+  var cell = this.config.cell,
+      tile = sel.div('tile' + id());
 
-  var id = function () {
-    var current = _id;
-    _id++;
-    return current;
+  tile.
+    move({to: this.board, relative: true}).
+    size({ 
+      width: cell.toString() + 'px',
+      height: cell.toString() + 'px'
+    }).
+    color({ bg: this.config.fg }); /* tile bg = config fg */
+
+  return {
+    move: function (x, y) {
+      tile.pos({
+        x: (x * cell).toString() + 'px',
+        y: (y * cell).toString() + 'px',
+      });
+    }
   };
-
-  return function () {
-    var cell = this.config.cell,
-        tile = sel.div('tile' + id());
-
-    tile.
-      move({to: this.board, relative: true}).
-      size({ 
-        width: cell.toString() + 'px',
-        height: cell.toString() + 'px'
-      }).
-      color({ bg: this.config.fg }); /* tile bg = config fg */
-
-    return {
-      move: function (x, y) {
-        tile.pos({
-          x: (x * cell).toString() + 'px',
-          y: (y * cell).toString() + 'px',
-        });
-      }
-    };
-  };
-})();
+};
