@@ -39,6 +39,8 @@ var Render = function (config) {
 
     return playPause;
   })();
+
+  this.playPause();
 };
 
 Render.prototype.tile = function () {

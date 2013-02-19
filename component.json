@@ -2,7 +2,7 @@
   "name": "render",
   "repo": "genjs/render",
   "description": "render",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "dependencies": {
     "corejs/uid": "*",
     "bojs/sel": "*",
