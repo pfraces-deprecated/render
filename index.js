@@ -22,8 +22,23 @@ var Render = function (config) {
       height: (config.height * config.cell).toString() + 'px'
     }).
     color({ bg: config.bg });
+  
+  this.playPause = (function () {
+    var isRunning = false,
+        frameInterval;
 
-  setInterval(config.frame, 1000 / config.fps);
+    var playPause = function () {
+      if (isRunning) {
+        isRunning = false;
+        clearInterval(frameInterval);
+      } else {
+        isRunning = true;
+        frameInterval = setInterval(config.frame, 1000 / config.fps);
+      }
+    };
+
+    return playPause;
+  })();
 };
 
 Render.prototype.tile = function () {
